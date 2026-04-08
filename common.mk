@@ -226,7 +226,8 @@ $(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,tr
 # Moto hardware
 PRODUCT_PACKAGES += \
     MotoActions \
-    MotoCommonOverlay
+    MotoCommonOverlay \
+    TurboPowerOverlay
 
 # Permissions
 PRODUCT_COPY_FILES += \

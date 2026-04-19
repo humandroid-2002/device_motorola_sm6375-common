@@ -115,6 +115,15 @@ function configure_memory_parameters() {
 	#Spawn 2 kswapd threads which can help in fast reclaiming of pages
 	#use 1 to improve performance
 	echo 1 > /proc/sys/vm/kswapd_threads
+	
+	# Enable TCP BBR congestion control
+	if [ -f /proc/sys/net/core/default_qdisc ]; then
+		echo fq > /proc/sys/net/core/default_qdisc
+	fi
+
+	if [ -f /proc/sys/net/ipv4/tcp_congestion_control ]; then
+		echo bbr > /proc/sys/net/ipv4/tcp_congestion_control
+	fi
 }
 
 # Core control parameters for silver

@@ -109,11 +109,21 @@ function configure_memory_parameters() {
 	# Disable wsf for all targets beacause we are using efk.
 	# wsf Range : 1..1000 So set to bare minimum value 1.
 	echo 1 > /proc/sys/vm/watermark_scale_factor
+
 	configure_zram_parameters
 	configure_read_ahead_kb_values
 
-	#Spawn 1 kswapd threads which can help in fast reclaiming of pages
+	# Spawn 1 kswapd threads which can help in fast reclaiming of pages
 	echo 1 > /proc/sys/vm/kswapd_threads
+
+	# Enable TCP BBR congestion control
+	if [ -f /proc/sys/net/core/default_qdisc ]; then
+		echo fq > /proc/sys/net/core/default_qdisc
+	fi
+
+	if [ -f /proc/sys/net/ipv4/tcp_congestion_control ]; then
+		echo bbr > /proc/sys/net/ipv4/tcp_congestion_control
+	fi
 }
 
 # Core control parameters for silver

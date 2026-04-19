@@ -187,7 +187,7 @@ echo 85 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_load
 
 # configure input boost settings
 echo "0:1190400" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-echo 200 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+echo 200 > /sys/devices/system/cpu/cpu_boost/input_boost_ms 
 
 # GPU
 echo simple_ondemand > /sys/class/kgsl/kgsl-3d0/devfreq/governor

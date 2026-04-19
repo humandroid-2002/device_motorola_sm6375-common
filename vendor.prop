@@ -278,6 +278,9 @@ telephony.lteOnCdmaDevice=1
 persist.vendor.btstack.enable.twsplus=true
 persist.vendor.btstack.enable.twsplussho=true
 
+# Security patch
+ro.vendor.kernel.security_patch=2026-02-05
+
 # Sensors
 persist.vendor.sensors.debug.ssc_qmi_debug=true
 persist.vendor.sensors.enable.bypass_worker=true

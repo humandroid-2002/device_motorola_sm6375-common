@@ -217,8 +217,6 @@ vendor.gralloc.disable_ubwc=0
 vendor.gralloc.secure_preview_buffer_format=420_sp
 vendor.gralloc.secure_preview_only=1
 vendor.hw.sf.IdleLazyResetThresholdT=1000
-persist.sys.perf.scroll_opt=true
-persist.sys.perf.scroll_opt.heavy_app=1
 
 # IMS
 persist.vendor.ims.cam_sensor_delay=20
@@ -319,8 +317,7 @@ debug.sf.early.sf.duration=10500000
 debug.sf.earlyGl.app.duration=13666666
 debug.sf.earlyGl.sf.duration=10500000
 debug.sf.enable_advanced_sf_phase_offset=0
-debug.sf.enable_gl_backpressure=false
-debug.sf.latch_unsignaled=1
+debug.sf.enable_gl_backpressure=1
 debug.sf.force_cpuset_system_default=1
 debug.sf.force_populate_color_modes=true
 debug.sf.frame_rate_multiple_threshold=120
@@ -329,7 +326,7 @@ debug.sf.late.app.duration=13666666
 debug.sf.late.sf.duration=10500000
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.scroll_boost_refreshrate=120
-debug.sf.touch_boost_refreshrate=90
+debug.sf.touch_boost_refreshrate=120
 debug.sf.use_phase_offsets_as_durations=1
 persist.sys.sf.color_mode=0
 persist.sys.sf.color_saturation=1.0

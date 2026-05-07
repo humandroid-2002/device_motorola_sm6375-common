@@ -41,26 +41,37 @@ PRODUCT_PACKAGES += \
     WifiResTarget
 
 # A/B
+ifneq ($(WITH_GMS),true)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+TARGET_RO_FILE_SYSTEM_TYPE := ext4
+else
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
+
+TARGET_RO_FILE_SYSTEM_TYPE := erofs
+PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.virtual_ab.compression.threads=true \
+    ro.virtual_ab.cow_op_merge_size=16 \
+    ro.virtual_ab.merge_thread_priority=19 \
+    ro.virtual_ab.num_merge_threads=1 \
+    ro.virtual_ab.num_verify_threads=1 \
+    ro.virtual_ab.num_worker_threads=3 \
+    ro.virtual_ab.o_direct.enabled=true \
+    ro.virtual_ab.read_ahead_size=16 \
+    ro.virtual_ab.verify_block_size=1048576 \
+    ro.virtual_ab.verify_threshold_size=1073741824 \
+    ro.virtual_ab.worker_thread_priority=0
+endif
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=erofs \
+    FILESYSTEM_TYPE_system=$(TARGET_RO_FILE_SYSTEM_TYPE) \
     POSTINSTALL_OPTIONAL_system=true
 
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=erofs \
-    POSTINSTALL_OPTIONAL_vendor=true
-
 PRODUCT_PACKAGES += \
-    checkpoint_gc \
     otapreopt_script
-
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.virtual_ab.compression.threads=true
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \

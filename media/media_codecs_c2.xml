@@ -335,5 +335,6 @@
             <Limit name="bitrate" range="1-40000000" />
             <Feature name="bitrate-modes" value="VBR,CBR" />
         </MediaCodec>
+        <Include href="media_codecs_dolby_audio.xml" />
     </Encoders>
 </MediaCodecs>

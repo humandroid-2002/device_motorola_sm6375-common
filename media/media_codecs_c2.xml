@@ -94,7 +94,6 @@
             <Limit name="blocks-per-second" range="36-489600" />
             <Limit name="bitrate" range="1-60000000" />
             <Limit name="frame-rate" range="1-120" />
-            <Limit name="concurrent-instances" max="16" />
             <Feature name="adaptive-playback" />
             <Feature name="can-swap-width-height" required="true" />
             <Limit name="concurrent-instances" max="16" />
@@ -109,7 +108,6 @@
             <Limit name="blocks-per-second" range="36-489600" />
             <Limit name="bitrate" range="1-60000000" />
             <Limit name="frame-rate" range="1-120" />
-            <Limit name="concurrent-instances" max="16" />
             <Feature name="adaptive-playback" />
             <Feature name="can-swap-width-height" required="true" />
             <Feature name="low-latency" />
@@ -129,7 +127,6 @@
             <Feature name="can-swap-width-height" required="true" />
             <Feature name="low-latency" />
             <Feature name="secure-playback" required="true" />
-            <Limit name="concurrent-instances" max="3" />
             <Limit name="concurrent-instances" max="3" />
             <Limit name="performance-point-1920x1080" value="30" />
         </MediaCodec>

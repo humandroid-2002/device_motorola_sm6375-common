@@ -208,6 +208,9 @@ PRODUCT_COPY_FILES += \
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
 
+# HWUI
+USE_OPENGL_RENDERER := true
+
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay-service.sdm \

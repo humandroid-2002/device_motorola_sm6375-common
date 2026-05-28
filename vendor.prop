@@ -310,6 +310,9 @@ debug.sdm.support_writeback=0
 # Stagefright
 debug.stagefright.c2inputsurface=-1
 
+# Enable Opengl for HWUI
+debug.hwui.renderer=opengl
+
 # Surfaceflinger
 debug.sf.disable_client_composition_cache=1
 debug.sf.early.app.duration=13666666

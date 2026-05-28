@@ -214,6 +214,9 @@ USE_OPENGL_RENDERER := true
 # Perf Activity Anim Override
 PERF_ANIM_OVERRIDE := true
 
+# Camera
+TARGET_BUILD_DEVICE_AS_WEBCAM := true
+
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay-service.sdm \

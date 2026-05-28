@@ -21,3 +21,6 @@ ril.subscription.types=RUIM
 
 # WiFi
 ro.boot.wificountrycode=00
+
+# Bluetooth
+bluetooth.profile.pbap.sim.enabled=true

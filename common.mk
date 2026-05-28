@@ -211,6 +211,9 @@ PRODUCT_ENABLE_UFFD_GC := true
 # HWUI
 USE_OPENGL_RENDERER := true
 
+# Perf Activity Anim Override
+PERF_ANIM_OVERRIDE := true
+
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay-service.sdm \

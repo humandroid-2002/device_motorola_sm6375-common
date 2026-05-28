@@ -23,5 +23,8 @@ ril.subscription.types=RUIM
 ro.boot.wificountrycode=00
 
 # Bluetooth
+persist.bluetooth.leaudio.allow.multiple.context=true
+persist.bluetooth.leaudio_offload.disabled=true
+ro.bluetooth.leaudio_offload.supported=true
 bluetooth.profile.sap.server.enabled=true
 bluetooth.profile.pbap.sim.enabled=true

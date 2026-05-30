@@ -1,0 +1,2 @@
+allow init sysfs_displayfeatures:file { setattr };
+allow init sysfs_livedisplay_tuneable:file { setattr };

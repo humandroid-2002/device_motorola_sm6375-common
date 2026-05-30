@@ -107,6 +107,14 @@ on boot
     setprop vendor.usb.qdss.inst.name "qdss_mdm"
     setprop vendor.usb.controller 4e00000.dwc3
 
+    # Allow system to control display HBM
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm
+
+    # Fingerprint-on-display HBM boost
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_hbm
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_hbm
+
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 

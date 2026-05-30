@@ -145,6 +145,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.memtrack-service
 
+# DisplayFeatures
+PRODUCT_PACKAGES += \
+    DisplayFeatures
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
@@ -258,6 +262,7 @@ PRODUCT_PACKAGES += \
     MotoActions \
     MotoCommonOverlay \
     LineageDialerOverlayBangkk \
+    DisplayFeaturesBangkk \
     TurboPowerOverlay
 
 # Permissions

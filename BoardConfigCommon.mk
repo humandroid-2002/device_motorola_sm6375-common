@@ -131,7 +131,9 @@ TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
 # Recovery
-BOARD_USES_RECOVERY_AS_BOOT := true
+BOARD_USES_RECOVERY_AS_BOOT := false
+# Use OFOX prebuilt boot.img instead of the compiled boot.img
+BOARD_PREBUILT_BOOTIMAGE := $(wildcard $(COMMON_PATH)/OrangeFox/boot.img)
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_NO_RECOVERY := true

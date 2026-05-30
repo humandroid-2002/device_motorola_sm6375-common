@@ -130,10 +130,30 @@ TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 
+# OrangeFox prebuilt support
+FOX_USE_PREBUILT_BOOT ?= false
+
+ifeq ($(FOX_USE_PREBUILT_BOOT),true)
+
+    BOARD_USES_RECOVERY_AS_BOOT := false
+
+    # if GMS Definied → use OrangeFox/boot.img
+    ifeq ($(WITH_GMS),true)
+        BOARD_PREBUILT_BOOTIMAGE := $(wildcard $(COMMON_PATH)/OrangeFox/boot.img)
+        $(warning "FOX: Using OrangeFox boot.img (GMS build)")
+    else
+        # if GMS not Definied → use OrangeFox/Vanilla/boot.img
+        BOARD_PREBUILT_BOOTIMAGE := $(wildcard $(COMMON_PATH)/OrangeFox/Vanilla/boot.img)
+        $(warning "FOX: Using OrangeFox Vanilla boot.img (No GMS)")
+    endif
+
+else
+    # Build boot.img as usual
+    BOARD_USES_RECOVERY_AS_BOOT := true
+    $(warning "FOX: Using stock boot.img (recovery-as-boot enabled)")
+endif
+
 # Recovery
-BOARD_USES_RECOVERY_AS_BOOT := false
-# Use OFOX prebuilt boot.img instead of the compiled boot.img
-BOARD_PREBUILT_BOOTIMAGE := $(wildcard $(COMMON_PATH)/OrangeFox/boot.img)
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_NO_RECOVERY := true

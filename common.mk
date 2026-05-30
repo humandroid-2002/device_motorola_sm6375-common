@@ -212,7 +212,12 @@ PRODUCT_ENABLE_UFFD_GC := true
 USE_OPENGL_RENDERER := true
 
 # Force the build system to generate an OTA which is causing the 'mv' command in the bacon target to fail due to an empty source argument.
-PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
+ifeq ($(FOX_USE_PREBUILT_BOOT),true)
+    PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
+    $(warning "FOX: OTA generation forced for prebuilt boot.img")
+else
+    $(warning "FOX: Standard OTA generation (stock boot.img)")
+endif
 
 # Perf Activity Anim Override
 PERF_ANIM_OVERRIDE := true

@@ -1,7 +1,12 @@
-# SELinux rules for Viper4Android / audio enhancements
+# Audio effects (Viper4Android / JamesDSP)
 
-# Only if your device has vendor_audio_prop
 get_prop(audioserver, vendor_audio_prop)
 
-allow audioserver unlabeled:file { read write open getattr };
-allow hal_audio_default hal_audio_default:process { execmem };
+allow audioserver unlabeled:file {
+    getattr
+    open
+    read
+    write
+};
+
+allow hal_audio_default hal_audio_default:process execmem;

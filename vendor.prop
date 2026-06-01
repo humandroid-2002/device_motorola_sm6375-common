@@ -294,7 +294,7 @@ persist.vendor.btstack.enable.twsplus=true
 persist.vendor.btstack.enable.twsplussho=true
 
 # Security patch
-ro.vendor.kernel.security_patch=2026-05-05
+ro.vendor.kernel.security_patch=2026-06-05
 
 # Sensors
 persist.vendor.sensors.debug.ssc_qmi_debug=true

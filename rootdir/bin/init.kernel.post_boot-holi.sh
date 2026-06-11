@@ -76,30 +76,6 @@ function configure_zram_parameters() {
 	fi
 }
 
-function configure_read_ahead_kb_values() {
-	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-	MemTotal=${MemTotalStr:16:8}
-
-	dmpts=$(ls /sys/block/*/queue/read_ahead_kb | grep -e dm -e mmc)
-
-	# Set 128 for <= 3GB &
-	# set 512 for >= 4GB targets.
-	if [ $MemTotal -le 3145728 ]; then
-		ra_kb=128
-	else
-		ra_kb=512
-	fi
-	if [ -f /sys/block/mmcblk0/bdi/read_ahead_kb ]; then
-		echo $ra_kb > /sys/block/mmcblk0/bdi/read_ahead_kb
-	fi
-	if [ -f /sys/block/mmcblk0rpmb/bdi/read_ahead_kb ]; then
-		echo $ra_kb > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
-	fi
-	for dm in $dmpts; do
-		echo $ra_kb > $dm
-	done
-}
-
 function configure_memory_parameters() {
 	# Set Memory parameters.
 
@@ -110,7 +86,6 @@ function configure_memory_parameters() {
 	# wsf Range : 1..1000 So set to bare minimum value 1.
 	echo 1 > /proc/sys/vm/watermark_scale_factor
 	configure_zram_parameters
-	configure_read_ahead_kb_values
 
 	#Spawn 2 kswapd threads which can help in fast reclaiming of pages
 	#use 1 to improve performance
@@ -161,14 +136,14 @@ echo 0-5 > /dev/cpuset/system-background/cpus
 echo 0 > /proc/sys/kernel/sched_boost
 
 # configure governor settings for silver cluster
-echo "performance" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 echo 1190400 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
 echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 
 # configure governor settings for gold cluster
-echo "performance" > /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/up_rate_limit_us
 echo 1248000 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_freq
